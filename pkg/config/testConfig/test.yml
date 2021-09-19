@@ -1,0 +1,11 @@
+http:
+  port: 5001
+  readTimeOut: 10s
+  writeTimeOut: 11s
+  shutdownTimeout: 12s
+
+mongo:
+  name: "some-name"
+  uri: "mongodb://localhost:27017"
+  user: "root"
+  password: "password"

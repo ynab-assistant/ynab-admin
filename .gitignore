@@ -13,3 +13,14 @@
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
+
+private/
+
+bin/
+
+.idea/
+.DS_Store
+
+.env
+
+configs/main.yml

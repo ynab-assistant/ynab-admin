@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  ynab-bot:
+    build:
+      context: .
+      dockerfile: ./deployment/docker/dockerfile.telegram-bot
+    # container_name: "ynab-bot"
+    hostname: "ynab-bot"
+    restart: always
+    ports:
+      - "5001:5001"
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:4.2
+    container_name: "ynab-helper-mongo"
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+    env_file:
+      ./.env
+    volumes:
+      - $HOME/data/mongo-data:/data/db/ynab-helper
+      - $HOME/data/mongo-bkp:/data/bkp/ynab-helper
+    restart: always
+
